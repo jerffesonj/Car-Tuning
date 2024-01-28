@@ -11,7 +11,6 @@ public class CameraController : MonoBehaviour
 
     public int currentCameraIndex = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         SetCurrentCamera();
@@ -37,6 +36,11 @@ public class CameraController : MonoBehaviour
     public void SetWeaponCam()
     {
         currentCameraIndex = 5;
+        SetCurrentCamera();
+    }
+    public void SetTiresCam()
+    {
+        currentCameraIndex = 4;
         SetCurrentCamera();
     }
 

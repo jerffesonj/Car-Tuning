@@ -8,6 +8,7 @@ public class CarController : MonoBehaviour
     private float horizontalInput, verticalInput;
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
+    [SerializeField] private bool canMove;
 
     // Settings
     [SerializeField] private float motorForce, breakForce, maxSteerAngle;
@@ -20,6 +21,26 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
 
+    public GameObject wheelsParent;
+    public GameObject wheelsHolder;
+    private void Start()
+    {
+        wheelsParent = transform.Find("Tires").gameObject;
+        foreach(Transform t in wheelsParent.transform)
+        {
+            if(t.gameObject.activeSelf)
+            {
+                wheelsHolder = t.gameObject;
+                break;
+            }
+        }
+
+        rearRightWheelTransform = wheelsHolder.transform.GetChild(0);
+        rearLeftWheelTransform = wheelsHolder.transform.GetChild(1);
+        frontRightWheelTransform = wheelsHolder.transform.GetChild(2);
+        frontLeftWheelTransform = wheelsHolder.transform.GetChild(3);
+    }
+
     private void FixedUpdate()
     {
         GetInput();
@@ -30,14 +51,18 @@ public class CarController : MonoBehaviour
 
     private void GetInput()
     {
-        // Steering Input
-        horizontalInput = Input.GetAxis("Horizontal");
+        if (canMove)
+        {
+            // Steering Input
+            horizontalInput = Input.GetAxis("Horizontal");
 
-        // Acceleration Input
-        verticalInput = Input.GetAxis("Vertical");
+            // Acceleration Input
+            verticalInput = Input.GetAxis("Vertical");
 
-        // Breaking Input
-        isBreaking = Input.GetKey(KeyCode.Space);
+            // Breaking Input
+            isBreaking = Input.GetKey(KeyCode.Space);
+
+        }
     }
 
     private void HandleMotor()

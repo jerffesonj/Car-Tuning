@@ -13,26 +13,27 @@ public class ColorPicker : MonoBehaviour
     {
         carMaterial = GameObject.FindGameObjectWithTag("CarMesh").GetComponent<MeshRenderer>().material;
 
-        Color carColor = carMaterial.color;
+        redSlider.value = PlayerPrefs.GetFloat("Red");
+        greenSlider.value = PlayerPrefs.GetFloat("Green");
+        blueSlider.value = PlayerPrefs.GetFloat("Blue");
 
-        redSlider.value = carColor.r;
-        greenSlider.value = carColor.g;
-        blueSlider.value = carColor.b;
+        carMaterial.color = new Color(redSlider.value, greenSlider.value, blueSlider.value);
 
         UpdateColor();
     }
 
     public void UpdateColor()
     {
-        // Obtém os valores dos sliders
         float red = redSlider.value;
         float green = greenSlider.value;
         float blue = blueSlider.value;
 
-        // Cria a cor com base nos valores dos sliders
         Color selectedColor = new Color(red, green, blue);
 
-        // Atualiza a cor exibida
         carMaterial.color = selectedColor;
+
+        PlayerPrefs.SetFloat("Red", red);
+        PlayerPrefs.SetFloat("Green", green);
+        PlayerPrefs.SetFloat("Blue", blue);
     }
 }
