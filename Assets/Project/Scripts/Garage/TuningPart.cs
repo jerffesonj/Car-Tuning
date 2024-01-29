@@ -71,9 +71,11 @@ public class TuningPart : MonoBehaviour
             if (carPart.equipped)
             {
                 ShowPart(partPrefabs.IndexOf(carPart));
-                break;
+                return;
             }
         }
+        partPrefabs[0].equipped = true;
+        ShowPart(0);
     }
 
     public void EquipCurrentItem()
@@ -88,6 +90,8 @@ public class TuningPart : MonoBehaviour
         partPrefabs[currentPartIndex].equipped = true;
 
         equipButton.SetActive(false);
+
+        ShowPartEquipped();
 
     }
     public void UnequipItem()
@@ -136,6 +140,9 @@ public class TuningPart : MonoBehaviour
         PlayerMoney.instance.AddMoney(partPrefabs[currentPartIndex].price);
         partPrefabs[currentPartIndex].bought = false;
         partPrefabs[currentPartIndex].equipped = false;
+
+        ShowPartEquipped();
+
 
         SetButtonStates(false, true, false);
 

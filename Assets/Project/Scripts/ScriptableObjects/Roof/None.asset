@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: {fileID: 0}
   equipped: 1
-  bought: 0
+  bought: 1
   price: 100
