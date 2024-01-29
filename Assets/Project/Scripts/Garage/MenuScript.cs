@@ -24,6 +24,10 @@ public class MenuScript : MonoBehaviour
         menu.SetActive(true);
     }
 
+    public void BackMenu()
+    {
+        SetActiveMenu(menuButtons);
+    }
     public void BullbarButton() 
     { 
         SetActiveMenu(bullbarButtons); 
