@@ -17,7 +17,7 @@ public class ColorPicker : MonoBehaviour
         greenSlider.value = PlayerPrefs.GetFloat("Green");
         blueSlider.value = PlayerPrefs.GetFloat("Blue");
 
-        carMaterial.color = new Color(redSlider.value, greenSlider.value, blueSlider.value);
+        carMaterial.color = new Color(PlayerPrefs.GetFloat("Red"), PlayerPrefs.GetFloat("Green"), PlayerPrefs.GetFloat("Blue"));
 
         UpdateColor();
     }

@@ -15,4 +15,4 @@ MonoBehaviour:
   part: {fileID: 0}
   equipped: 1
   bought: 0
-  price: 500
+  price: 100

@@ -15,7 +15,7 @@ public class PlayerMoney : MonoBehaviour
 
         if(PlayerPrefs.GetInt("Money") == 0)
         {
-            money = 4500;
+            money = 10000;
         }
         else
         {

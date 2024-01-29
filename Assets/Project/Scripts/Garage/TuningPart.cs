@@ -89,6 +89,8 @@ public class TuningPart : MonoBehaviour
 
         partPrefabs[currentPartIndex].equipped = true;
 
+        equipButton.SetActive(false);
+
     }
     public void UnequipItem()
     {
@@ -122,13 +124,16 @@ public class TuningPart : MonoBehaviour
 
             sellButton.SetActive(true);
             buyButton.SetActive(false);
-            equipButton.SetActive(true);
+            equipButton.SetActive(false);
+
+            EquipCurrentItem();
+
         }
     }
 
     public void SellItem()
     {
-        if (!partPrefabs[currentPartIndex].bought)
+        if (!partPrefabs[currentPartIndex].bought || currentPartIndex == 0)
             return;
         PlayerMoney.instance.AddMoney(partPrefabs[currentPartIndex].price);
         partPrefabs[currentPartIndex].bought = false;
@@ -162,14 +167,19 @@ public class TuningPart : MonoBehaviour
         if (currentPartIndex < 0)
             currentPartIndex = partsInstantiated.Count;
 
-        if(partsInstantiated[currentPartIndex] != null)
+        if (partsInstantiated[currentPartIndex] != null)
             partsInstantiated[currentPartIndex].SetActive(true);
 
-        if (partPrefabs[currentPartIndex].bought)
+        CarPartScriptableObject selectedPart = partPrefabs[currentPartIndex];
+
+        if (selectedPart.bought)
         {
             sellButton.SetActive(true);
             buyButton.SetActive(false);
-            equipButton.SetActive(true);
+            equipButton.SetActive(false);
+
+            if (!selectedPart.equipped)
+                equipButton.SetActive(true);
         }
         else
         {

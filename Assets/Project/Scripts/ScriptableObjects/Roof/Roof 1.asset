@@ -15,4 +15,4 @@ MonoBehaviour:
   part: {fileID: 1271069397040502, guid: 65ddc3c1d5f348f41b9afcd7de64ddfb, type: 3}
   equipped: 0
   bought: 0
-  price: 500
+  price: 100
