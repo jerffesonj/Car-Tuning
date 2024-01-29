@@ -3,21 +3,21 @@ using UnityEngine.UI;
 
 public class ColorPicker : MonoBehaviour
 {
-    public Slider redSlider;
-    public Slider greenSlider;
-    public Slider blueSlider;
+    [SerializeField] private Slider redSlider;
+    [SerializeField] private Slider greenSlider;
+    [SerializeField] private Slider blueSlider;
 
-    public Material carMaterial;
+    private Material carMaterial;
 
     private void Start()
     {
         carMaterial = GameObject.FindGameObjectWithTag("CarMesh").GetComponent<MeshRenderer>().material;
 
+        carMaterial.color = new Color(PlayerPrefs.GetFloat("Red"), PlayerPrefs.GetFloat("Green"), PlayerPrefs.GetFloat("Blue"));
+
         redSlider.value = PlayerPrefs.GetFloat("Red");
         greenSlider.value = PlayerPrefs.GetFloat("Green");
         blueSlider.value = PlayerPrefs.GetFloat("Blue");
-
-        carMaterial.color = new Color(PlayerPrefs.GetFloat("Red"), PlayerPrefs.GetFloat("Green"), PlayerPrefs.GetFloat("Blue"));
 
         UpdateColor();
     }

@@ -5,67 +5,44 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-    public GameObject menuButtons;
-    public GameObject bullbarButtons;
-    public GameObject colorButtons;
-    public GameObject roofButtons;
-    public GameObject weaponsButtons;
-    public GameObject tiresButtons;
+    [SerializeField] private GameObject menuButtons;
+    [SerializeField] private GameObject bullbarButtons;
+    [SerializeField] private GameObject colorButtons;
+    [SerializeField] private GameObject roofButtons;
+    [SerializeField] private GameObject weaponsButtons;
+    [SerializeField] private GameObject tiresButtons;
 
-    public void BackMenu()
+    private void SetActiveMenu(GameObject menu)
     {
-        menuButtons.SetActive(true);
+        menuButtons.SetActive(false);
         bullbarButtons.SetActive(false);
         roofButtons.SetActive(false);
         weaponsButtons.SetActive(false);
         tiresButtons.SetActive(false);
         colorButtons.SetActive(false);
+
+        menu.SetActive(true);
     }
 
-    public void BullbarButton()
-    {
-        menuButtons.SetActive(false);
-        bullbarButtons.SetActive(true);
-        roofButtons.SetActive(false);
-        weaponsButtons.SetActive(false);
-        tiresButtons.SetActive(false);
-        colorButtons.SetActive(false);
+    public void BullbarButton() 
+    { 
+        SetActiveMenu(bullbarButtons); 
     }
     public void RoofButton()
     {
-        menuButtons.SetActive(false);
-        bullbarButtons.SetActive(false);
-        roofButtons.SetActive(true);
-        weaponsButtons.SetActive(false);
-        tiresButtons.SetActive(false);
-        colorButtons.SetActive(false);
+        SetActiveMenu(roofButtons);
     }
     public void WeaponButton()
     {
-        menuButtons.SetActive(false);
-        bullbarButtons.SetActive(false);
-        roofButtons.SetActive(false);
-        weaponsButtons.SetActive(true);
-        tiresButtons.SetActive(false);
-        colorButtons.SetActive(false);
+        SetActiveMenu(weaponsButtons);
     }
-    public void TiresButton()
+    public void TiresButton() 
     {
-        menuButtons.SetActive(false);
-        bullbarButtons.SetActive(false);
-        roofButtons.SetActive(false);
-        weaponsButtons.SetActive(false);
-        tiresButtons.SetActive(true);
-        colorButtons.SetActive(false);
+        SetActiveMenu(tiresButtons);
     }
-    public void ColorButton()
+    public void ColorButton() 
     {
-        menuButtons.SetActive(false);
-        bullbarButtons.SetActive(false);
-        roofButtons.SetActive(false);
-        weaponsButtons.SetActive(false);
-        tiresButtons.SetActive(false);
-        colorButtons.SetActive(true);
+        SetActiveMenu(colorButtons);
     }
 
     public void ExitGarage()

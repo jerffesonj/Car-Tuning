@@ -66,13 +66,11 @@ public class TuningPart : MonoBehaviour
 
     void ShowPartEquipped()
     {
-        for (int i = 0; i < partPrefabs.Count; i++)
+        foreach (CarPartScriptableObject carPart in partPrefabs)
         {
-            CarPartScriptableObject carPart = partPrefabs[i];
-
             if (carPart.equipped)
             {
-                ShowPart(i);
+                ShowPart(partPrefabs.IndexOf(carPart));
                 break;
             }
         }
@@ -139,9 +137,8 @@ public class TuningPart : MonoBehaviour
         partPrefabs[currentPartIndex].bought = false;
         partPrefabs[currentPartIndex].equipped = false;
 
-        sellButton.SetActive(false);
-        buyButton.SetActive(true);
-        equipButton.SetActive(false);
+        SetButtonStates(false, true, false);
+
     }
 
     void HideAllParts()
@@ -174,18 +171,21 @@ public class TuningPart : MonoBehaviour
 
         if (selectedPart.bought)
         {
-            sellButton.SetActive(true);
-            buyButton.SetActive(false);
-            equipButton.SetActive(false);
+            SetButtonStates(true, false, false);
 
             if (!selectedPart.equipped)
                 equipButton.SetActive(true);
         }
         else
         {
-            sellButton.SetActive(false);
-            buyButton.SetActive(true);
-            equipButton.SetActive(false);
+            SetButtonStates(false, true, false);
         }
+    }
+
+    void SetButtonStates(bool sell, bool buy, bool equip)
+    {
+        sellButton.SetActive(sell);
+        buyButton.SetActive(buy);
+        equipButton.SetActive(equip);
     }
 }

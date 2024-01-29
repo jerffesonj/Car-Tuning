@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public List<GameObject> cameras;
+    [SerializeField] List<GameObject> cameras;
 
-    public GameObject currentCamera;
+    private GameObject currentCamera;
 
-    public int currentCameraIndex = 0;
+    private int currentCameraIndex = 0;
 
     void Start()
     {

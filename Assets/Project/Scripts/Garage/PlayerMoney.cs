@@ -8,7 +8,6 @@ public class PlayerMoney : MonoBehaviour
     public static PlayerMoney instance;
     public int money;
     public TMP_Text moneyText;
-    // Start is called before the first frame update
     void Start()
     {
         instance = this;
